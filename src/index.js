@@ -20,6 +20,27 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Home Page!');
 });
 
+const express = require('express');
+const pool = require('./db'); // Make sure the path to your db file is correct
+const app = express();
+
+// Endpoint to retrieve data from a specific table
+app.get('/api/data', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM users'); // Replace with your actual table name
+    res.json(rows); // Send the retrieved rows as JSON
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Database query error' });
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
