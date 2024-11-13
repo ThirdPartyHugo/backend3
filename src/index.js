@@ -6,6 +6,7 @@ const routes = require('./routes');
 const db = require('./config/database');
 const setupDiscordBot = require('./services/discordBot');
 const setupScheduler = require('./services/scheduler');
+const bcrypt = require('bcrypt');
 
 const app = express();
 
