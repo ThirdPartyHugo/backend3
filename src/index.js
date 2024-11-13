@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 
-const loginRoute = require('./routes/login');
+const loginRoute = require('./routes/auth');
 
 app.use('/api', loginRoute);
 
