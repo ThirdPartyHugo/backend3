@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Home Page!');
 });
 
-
+const PORT = process.env.PORT || 3306;
 const pool = require('./config/database'); // Make sure the path to your db file is correct
 
 
@@ -35,7 +35,7 @@ app.get('/api/data', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-const PORT = process.env.PORT || 3306;
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
