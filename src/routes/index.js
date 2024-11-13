@@ -9,5 +9,8 @@ router.use('/sales', salesRoutes);
 router.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
+router.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'Server is running' });
+});
 
 module.exports = router;
