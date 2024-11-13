@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Home Page!');
 });
 
-const express = require('express');
+
 const pool = require('./config/database'); // Make sure the path to your db file is correct
 const app = express();
 
