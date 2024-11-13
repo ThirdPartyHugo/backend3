@@ -16,6 +16,9 @@ app.use(express.json());
 
 // Routes
 app.use('/api', routes);
+app.get('/', (req, res) => {
+  res.send('Welcome to the Home Page!');
+});
 
 // Error handling
 app.use((err, req, res, next) => {
