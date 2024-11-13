@@ -21,13 +21,13 @@ app.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3306;
-const pool = require('./config/database'); // Make sure the path to your db file is correct
+// Make sure the path to your db file is correct
 
 
 // Endpoint to retrieve data from a specific table
 app.get('/api/data', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM users'); // Replace with your actual table name
+    const [rows] = await db.query('SELECT * FROM users'); // Replace with your actual table name
     res.json(rows); // Send the retrieved rows as JSON
   } catch (error) {
     console.error('Error fetching data:', error);
