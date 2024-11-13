@@ -39,10 +39,10 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 
 // Route to add a new user
 app.post('/api/adduser', async (req, res) => {
-  const { username, email, password_hash, role } = req.body;
+  const { username, email, password, role } = req.body;
 
   // Validate required fields
-  if (!username || !email || !password_hash || !role) {
+  if (!username || !email || !password || !role) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
@@ -64,8 +64,6 @@ app.post('/api/adduser', async (req, res) => {
     res.status(500).json({ error: 'Database insert error' });
   }
 });
-
-
 
 
 
