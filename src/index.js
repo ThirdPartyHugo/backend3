@@ -12,8 +12,9 @@ const bcrypt = require('bcrypt');
 const app = express();
 
 const loginRoute = require('./routes/auth');
+require('dotenv').config();
 
-app.use('/api', loginRoute);
+
 
 // Middleware
 app.use(helmet());
@@ -22,6 +23,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api', routes);
+app.use('/api', loginRoute);
 app.get('/', (req, res) => {
   res.send('Welcome to the Home Page!');
 });
