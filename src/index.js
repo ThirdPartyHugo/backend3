@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 
 const pool = require('./config/database'); // Make sure the path to your db file is correct
-const app = express();
+
 
 // Endpoint to retrieve data from a specific table
 app.get('/api/data', async (req, res) => {
