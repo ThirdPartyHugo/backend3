@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../config/database');
 
-router.post('/login', async (req, res) => {
+router.post('/auth', async (req, res) => {
   try {
     const { username, password } = req.body;
     const [users] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
