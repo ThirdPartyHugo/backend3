@@ -39,24 +39,24 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 
 // Route to add a new user
 app.post('/api/adduser', async (req, res) => {
-  const { username, email, password, role } = req.body;
+  const { username, email, password_hash, role } = req.body;
 
   // Validate required fields
-  if (!username || !email || !password || !role) {
+  if (!username || !email || !password_hash || !role) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
   try {
     // Hash the plain text password
     const saltRounds = 10;
-    const password_hash = await bcrypt.hash(password, saltRounds);
+    const password = await bcrypt.hash(password_hash, saltRounds);
 
     const query = `
       INSERT INTO users (username, email, password_hash, role, created_at, updated_at)
       VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
     `;
     
-    const [result] = await db.query(query, [username, email, password_hash, role]);
+    const [result] = await db.query(query, [username, email, password, role]);
     
     res.status(201).json({ message: 'User added successfully', userId: result.insertId });
   } catch (error) {
