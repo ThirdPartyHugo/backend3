@@ -20,24 +20,13 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Home Page!');
 });
 
-const PORT = process.env.PORT || 3000;
-// Make sure the path to your db file is correct
-
-
-
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-
 // Error handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
 
-
+const PORT = process.env.PORT || 3306;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
