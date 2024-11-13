@@ -3,12 +3,17 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const routes = require('./routes');
+
 const db = require('./config/database');
 const setupDiscordBot = require('./services/discordBot');
 const setupScheduler = require('./services/scheduler');
 const bcrypt = require('bcrypt');
 
 const app = express();
+
+const loginRoute = require('./routes/login');
+
+app.use('/api', loginRoute);
 
 // Middleware
 app.use(helmet());
