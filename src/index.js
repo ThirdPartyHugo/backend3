@@ -47,13 +47,14 @@ app.post('/api/adduser', async (req, res) => {
 
   try {
     const query = `
-      INSERT INTO users (username, email, password_hash, role, created_at, updated_at)
-      VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-    `;
-    
-    const [result] = await db.query(query, [username, email, password_hash, role]);
-
-    res.status(201).json({ message: 'User added successfully', userId: result.insertId });
+    INSERT INTO users (username, email, password_hash, role, created_at, updated_at)
+    VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+  `;
+  
+  const [result] = await db.query(query, [username, email, password_hash, role]);
+  
+  res.status(201).json({ message: 'User added successfully', userId: result.insertId });
+  
   } catch (error) {
     console.error('Error adding user:', error);
     res.status(500).json({ error: 'Database insert error' });
