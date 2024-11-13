@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Home Page!');
 });
 
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3000;
 // Make sure the path to your db file is correct
 
 
