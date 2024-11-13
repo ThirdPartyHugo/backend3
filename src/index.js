@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/data', async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT * FROM your_table_name'); // Replace with your actual table name
+    const [rows] = await db.query('SELECT * FROM users'); // Replace with your actual table name
     res.json(rows); // Send the retrieved rows as JSON
   } catch (error) {
     console.error('Error fetching data:', error);
