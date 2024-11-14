@@ -38,7 +38,48 @@ app.get('/api/data', async (req, res) => {
   }
 });
 
+app.post('/api/createteam', async (req, res) => {
+  const { teamName, description } = req.body;
 
+  if (!teamName || !description) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  try {
+    const query = `
+      INSERT INTO teams (team_name, description, created_at)
+      VALUES (?, ?, CURRENT_TIMESTAMP)
+    `;
+    const [result] = await db.query(query, [teamName, description]);
+    
+    res.status(201).json({ message: 'Team created successfully', teamId: result.insertId });
+  } catch (error) {
+    console.error('Error creating team:', error);
+    res.status(500).json({ error: 'Database insert error' });
+  }
+});
+
+// Route to add a user to an existing team
+app.post('/api/addusertoteam', async (req, res) => {
+  const { teamId, userId } = req.body;
+
+  if (!teamId || !userId) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  try {
+    const query = `
+      INSERT INTO team_users (team_id, user_id, added_at)
+      VALUES (?, ?, CURRENT_TIMESTAMP)
+    `;
+    await db.query(query, [teamId, userId]);
+    
+    res.status(201).json({ message: 'User added to team successfully' });
+  } catch (error) {
+    console.error('Error adding user to team:', error);
+    res.status(500).json({ error: 'Database insert error' });
+  }
+});
 
 
 
